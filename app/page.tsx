@@ -65,7 +65,7 @@ export default function Home() {
         <div style={{ marginTop: '40px', display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
           
           <div style={{ flex: '1', minWidth: '280px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}>// LATEST ANALYSIS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}> LATEST ANALYSIS</h3>
             <div style={{ display: 'flex', gap: '10px' }}>
               <div style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '20px', borderRadius: '12px', height: '100px', width: '50%', display: 'flex', alignItems: 'flex-end' }}>
                 ANALYSIS 1
@@ -77,7 +77,7 @@ export default function Home() {
           </div>
 
           <div style={{ flex: '1', minWidth: '280px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}>// FEATURED POSTS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}> FEATURED POSTS</h3>
             <div style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '20px', borderRadius: '12px', height: '100px', display: 'flex', alignItems: 'flex-end' }}>
               FEATURED POST BIG
             </div>
