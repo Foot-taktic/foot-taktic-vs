@@ -1,96 +1,101 @@
-"use client";
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOT | TAKTIC - كأس العالم 2026</title>
+    <style>
+        /* إعدادات الخط الأساسية */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-export default function Home() {
-  return (
-    <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh', fontFamily: 'sans-serif', padding: '0', margin: '0' }}>
-      
-      {/* 1. الشريط الفوقاني الفسفوري */}
-      <div style={{ backgroundColor: '#85fe00', color: '#000000', textAlign: 'center', fontSize: '11px', fontWeight: 'bold', padding: '8px 0', letterSpacing: '2px' }}>
-        OFFICIAL SITE
-      </div>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0c0d12;
+            color: #ffffff;
+            margin: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-      {/* 2. الـ Navbar الرئيسي */}
-      <nav style={{ padding: '20px', textTransform: 'uppercase', fontWeight: '900', fontSize: '24px', textAlign: 'center', borderBottom: '1px solid #111111' }}>
-        FOOT TAKTIC
-      </nav>
+        /* تعريف الألوان الأساسية */
+        :root {
+            --neon-green: #dcfd21;
+            --header-dark: #07080a;
+            --background-dark: #121316;
+        }
 
-      {/* 3. الواجهة الرئيسية (Hero Section) */}
-      <main style={{ maxWidth: '1000px', margin: '0 auto', padding: '30px 15px' }}>
-        
-        {/* الكرت الكبير بالأسود الغامق د التيران */}
-        <div style={{ backgroundColor: '#0a0a0a', border: '1px solid #1c1c1c', borderRadius: '24px', padding: '50px 20px', textAlign: 'center' }}>
-          
-          <h2 style={{ color: '#555555', fontSize: '12px', fontWeight: 'bold', letterSpacing: '3px', margin: '0 0 10px 0' }}>
-            WORLD CUP 2026
-          </h2>
-          
-          <h1 style={{ fontSize: '48px', fontWeight: '900', margin: '0 0 20px 0', letterSpacing: '1px' }}>
-            COUNTDOWN
-          </h1>
+        /* --- الشريط العلوي --- */
+        header {
+            width: 100%;
+            height: 70px;
+            background-color: var(--header-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #1a1b1d;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
 
-          {/* العداد د الوقت متناسق ومقاد */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', backgroundColor: '#000000', border: '1px solid #222222', padding: '15px 20px', borderRadius: '12px', maxWidth: '340px', margin: '0 auto 30px auto' }}>
-            <div>
-              <span style={{ color: '#666666', fontSize: '11px', fontWeight: 'bold' }}>DAYS </span>
-              <span style={{ fontSize: '20px', fontWeight: '900', color: '#ffffff' }}>18</span>
-            </div>
-            <div style={{ color: '#333333', fontWeight: 'bold' }}>:</div>
-            <div>
-              <span style={{ color: '#666666', fontSize: '11px', fontWeight: 'bold' }}>HOURS </span>
-              <span style={{ fontSize: '20px', fontWeight: '900', color: '#ffffff' }}>23</span>
-            </div>
-            <div style={{ color: '#333333', fontWeight: 'bold' }}>:</div>
-            <div>
-              <span style={{ color: '#666666', fontSize: '11px', fontWeight: 'bold' }}>MIN </span>
-              <span style={{ fontSize: '20px', fontWeight: '900', color: '#85fe00' }}>06</span>
-            </div>
-          </div>
+        .header-logo-ar {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
 
-          {/* الأزرار الثلاثة الفسفورية بحال الصورة */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-            <button style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}>
-              LIVE
-            </button>
-            <button style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}>
-              NEWS
-            </button>
-            <button style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}>
-              TRANSFERS
-            </button>
-          </div>
+        .header-main {
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
 
-        </div>
+        .logo-part {
+            color: var(--neon-green);
+        }
 
-        {/* 4. الأقسام التحتانية */}
-        <div style={{ marginTop: '40px', display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-          
-          <div style={{ flex: '1', minWidth: '280px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}> LATEST ANALYSIS</h3>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <div style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '20px', borderRadius: '12px', height: '100px', width: '50%', display: 'flex', alignItems: 'flex-end' }}>
-                ANALYSIS 1
-              </div>
-              <div style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '20px', borderRadius: '12px', height: '100px', width: '50%', display: 'flex', alignItems: 'flex-end' }}>
-                ANALYSIS 2
-              </div>
-            </div>
-          </div>
+        /* --- القسم الرئيسي (Hero) --- */
+        .hero-section {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(7, 8, 10, 0.9), rgba(12, 13, 18, 0.7)), url('https://images.unsplash.com/photo-1579803111005-ae1c8a1e2f3d?q=80&w=2940&auto=format&fit=crop'); /* رابط لصورة ملعب مشابهة */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 70px; /* للتعويض عن الهيدر */
+        }
 
-          <div style={{ flex: '1', minWidth: '280px' }}>
-            <h3 style={{ fontSize: '15px', fontWeight: '900', margin: '0 0 15px 0' }}> FEATURED POSTS</h3>
-            <div style={{ backgroundColor: '#85fe00', color: '#000000', fontWeight: '900', fontSize: '11px', padding: '20px', borderRadius: '12px', height: '100px', display: 'flex', alignItems: 'flex-end' }}>
-              FEATURED POST BIG
-            </div>
-          </div>
+        .countdown-title {
+            font-size: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
 
-        </div>
+        .world-cup-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.1;
+        }
 
-      </main>
-
-      <footer style={{ borderTop: '1px solid #111111', marginTop: '60px', padding: '20px 0', textAlign: 'center', fontSize: '10px', color: '#333333', fontWeight: 'bold' }}>
-        &copy; 2026 FOOT TAKTIC. OFFICIAL PLATFORM.
-      </footer>
-
-    </div>
-  );
-}
+        /* العداد التنازلي */
+        .countdown-timer {
+            margin: 2rem 0;
+            display: flex;
+            gap: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(220, 253, 33, 0.2);
+            box-shadow: 0 4px 3
