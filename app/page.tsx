@@ -59,13 +59,13 @@ export default function Home() {
 
           {/* الأزرار الثلاثة الفسفورية الطايرة */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase', transition: '0.3s' }}>
+            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase' }}>
               LIVE
             </button>
-            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase', transition: '0.3s' }}>
+            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase' }}>
               NEWS
             </button>
-            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase', transition: '0.3s' }}>
+            <button style={{ backgroundColor: '#dcfd21', color: '#0c0d12', fontWeight: '700', fontSize: '12px', padding: '12px 35px', borderRadius: '8px', border: 'none', cursor: 'pointer', textTransform: 'uppercase' }}>
               TRANSFERS
             </button>
           </div>
