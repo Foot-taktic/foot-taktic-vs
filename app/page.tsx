@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div style={{ backgroundColor: '#0c0d12', color: '#ffffff', minHeight: '100vh', fontFamily: 'sans-serif', padding: '0', margin: '0' }}>
       
-      {/* 1. الشريط الفوقاني الفسفوري */}
+      {/* 1. الشريط الفوقاني الفسفوري النيون */}
       <div style={{ backgroundColor: '#dcfd21', color: '#000000', textAlign: 'center', fontSize: '11px', fontWeight: 'bold', padding: '8px 0', letterSpacing: '2px' }}>
         OFFICIAL SITE
       </div>
@@ -14,12 +14,12 @@ export default function Home() {
         FOOT <span style={{ color: '#dcfd21' }}>|</span> TAKTIC
       </nav>
 
-      {/* 3. الواجهة الرئيسية (Hero Section) مع صورة الملعب ف الخلفية */}
+      {/* 3. الواجهة الرئيسية (Hero Section) مع صورة الملعب الحقيقية د السيت */}
       <main>
         <div style={{ 
           width: '100%', 
-          minHeight: '60vh', 
-          backgroundImage: "linear-gradient(to bottom, rgba(7, 8, 10, 0.85), rgba(12, 13, 18, 0.7)), url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1200&auto=format&fit=crop')", 
+          minHeight: '65vh', 
+          backgroundImage: "linear-gradient(to bottom, rgba(7, 8, 10, 0.8), rgba(12, 13, 18, 0.6)), url('https://foottaktic.com/wp-content/uploads/2023/06/stadium-bg.jpg')", 
           backgroundSize: 'cover', 
           backgroundPosition: 'center', 
           display: 'flex', 
@@ -35,12 +35,12 @@ export default function Home() {
             WORLD CUP 2026
           </h2>
           
-          <h1 style={{ fontSize: '48px', fontWeight: '900', margin: '0 0 20px 0', letterSpacing: '1px', textTransform: 'uppercase' }}>
+          <h1 style={{ fontSize: '52px', fontWeight: '900', margin: '0 0 20px 0', letterSpacing: '1px', textTransform: 'uppercase' }}>
             COUNTDOWN
           </h1>
 
           {/* العداد د الوقت المظلم والشفاف الفوق د التيران */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', backgroundColor: 'rgba(0, 0, 0, 0.65)', backdropFilter: 'blur(4px)', border: '1px solid rgba(220, 253, 33, 0.2)', padding: '15px 25px', borderRadius: '12px', maxWidth: '340px', margin: '0 auto 30px auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', backgroundColor: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(6px)', border: '1px solid rgba(220, 253, 33, 0.2)', padding: '15px 25px', borderRadius: '12px', maxWidth: '340px', margin: '0 auto 30px auto' }}>
             <div>
               <span style={{ color: '#9c9c9c', fontSize: '11px', fontWeight: 'bold' }}>DAYS:</span>
               <span style={{ fontSize: '22px', fontWeight: '900', color: '#ffffff', marginLeft: '5px' }}>18</span>
