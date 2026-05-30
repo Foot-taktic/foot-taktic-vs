@@ -1,333 +1,565 @@
-"use client";
-import { useEffect, useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOOT | TAKTIC - Football Hub</title>
+    <style>
+        :root {
+            --bg-color: #000;
+            --main-text-color: #fff;
+            --highlight-color: #bfff00; /* Neon Lime-Yellow */
+            --sub-text-color: #ccc;
+            --card-bg-color: #1a1a1a;
+            --accent-color: #333;
+        }
 
-export default function Home() {
-  const targetDate = new Date("2026-06-11T00:00:00").getTime();
-  const [mounted, setMounted] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+        body {
+            font-family: 'Montserrat', sans-serif; /* Modern, clean sans-serif */
+            background-color: var(--bg-color);
+            color: var(--main-text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-  // لمنع مشاكل الـ Hydration في Next.js ولتحديث العداد
-  useEffect(() => {
-    setMounted(true);
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-      if (diff <= 0) {
-        clearInterval(interval);
-        return;
-      }
+        /* Top Bar */
+        .top-bar {
+            background-color: #000;
+            color: var(--highlight-color);
+            text-align: center;
+            padding: 5px 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--accent-color);
+        }
 
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / 1000 / 60) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
-    }, 1000);
+        /* Nav Bar */
+        .nav-bar {
+            background-color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    return () => clearInterval(interval);
-  }, []);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
 
-  // مصفوفة المقالات مع صور مخصصة لكل مقال لتفادي التكرار
-  const articles = [
-    { title: "World Cup 2026 Guide", img: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600" },
-    { title: "USA Tactical Breakdown", img: "https://images.unsplash.com/photo-1551958219-acbc608c6d3c?q=80&w=600" },
-    { title: "Canada Rising Stars", img: "https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=600" },
-    { title: "Mexico Strategy Review", img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600" },
-    { title: "Transfer Market Trends", img: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=600" },
-    { title: "Champions League Update", img: "https://images.unsplash.com/photo-1624880351068-803664c39158?q=80&w=600" },
-  ];
+        .logo span {
+            color: var(--highlight-color);
+            margin: 0 5px;
+        }
 
-  const boxStyle = {
-    background: "rgba(18, 21, 27, 0.6)",
-    padding: "20px 24px",
-    borderRadius: "16px",
-    border: "1px solid rgba(255, 255, 255, 0.08)",
-    minWidth: "120px",
-    textAlign: "center",
-    backdropFilter: "blur(12px)",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.4)",
-  };
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
 
-  return (
-    <div
-      style={{
-        background: "#0a0c10",
-        color: "#ffffff",
-        minHeight: "100vh",
-        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-        WebkitFontSmoothing: "antialiased",
-      }}
-    >
-      {/* TOP BAR */}
-      <div
-        style={{
-          background: "#d8ff1a",
-          color: "#000",
-          textAlign: "center",
-          padding: "8px",
-          fontWeight: "800",
-          fontSize: "12px",
-          letterSpacing: "4px",
-          textTransform: "uppercase",
-        }}
-      >
-        ★ Official Football Hub ★
-      </div>
+        .nav-menu li a {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
 
-      {/* NAVIGATION */}
-      <nav
-        style={{
-          padding: "20px 40px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
-          background: "rgba(10, 12, 16, 0.8)",
-          backdropFilter: "blur(10px)",
-          position: "sticky",
-          top: 0,
-          zIndex: 100,
-        }}
-      >
-        <span style={{ fontSize: "24px", fontWeight: "900", letterSpacing: "1px" }}>
-          FOOT<span style={{ color: "#d8ff1a" }}>•</span>TAKTIC
-        </span>
-      </nav>
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
 
-      {/* HERO SECTION */}
-      <section
-        style={{
-          textAlign: "center",
-          padding: "120px 20px",
-          background:
-            "linear-gradient(rgba(10, 12, 16, 0.5), #0a0c10), url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1600&auto=format&fit=crop')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <span
-          style={{
-            color: "#d8ff1a",
-            fontWeight: "bold",
-            letterSpacing: "6px",
-            fontSize: "14px",
-            marginBottom: "12px",
-          }}
-        >
-          ROAD TO GLORY
-        </span>
-        <h1
-          style={{
-            fontSize: "clamp(40px, 6vw, 80px)",
-            fontWeight: "900",
-            margin: 0,
-            letterSpacing: "-1px",
-            lineHeight: "1.1",
-            textTransform: "uppercase",
-          }}
-        >
-          World Cup 2026
-        </h1>
+        .nav-icons i {
+            color: var(--main-text-color);
+            cursor: pointer;
+        }
 
-        <p
-          style={{
-            color: "rgba(255,255,255,0.6)",
-            marginTop: "15px",
-            fontSize: "18px",
-            fontWeight: "500",
-            letterSpacing: "2px",
-          }}
-        >
-          USA • CANADA • MEXICO
-        </p>
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--main-text-color);
+            padding: 100px 20px 60px 20px;
+            text-align: center;
+        }
 
-        {/* COUNTDOWN */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "16px",
-            flexWrap: "wrap",
-            marginTop: "45px",
-          }}
-        >
-          <div style={boxStyle}>
-            <div style={{ fontSize: "36px", fontWeight: "800", color: "#fff" }}>
-              {mounted ? timeLeft.days : "00"}
-            </div>
-            <div style={{ fontSize: "11px", color: "#rgba(255,255,255,0.4)", fontWeight: "700", letterSpacing: "1px", marginTop: "4px" }}>DAYS</div>
-          </div>
-          <div style={boxStyle}>
-            <div style={{ fontSize: "36px", fontWeight: "800", color: "#fff" }}>
-              {mounted ? String(timeLeft.hours).padStart(2, "0") : "00"}
-            </div>
-            <div style={{ fontSize: "11px", color: "#rgba(255,255,255,0.4)", fontWeight: "700", letterSpacing: "1px", marginTop: "4px" }}>HOURS</div>
-          </div>
-          <div style={boxStyle}>
-            <div style={{ fontSize: "36px", fontWeight: "800", color: "#fff" }}>
-              {mounted ? String(timeLeft.minutes).padStart(2, "0") : "00"}
-            </div>
-            <div style={{ fontSize: "11px", color: "#rgba(255,255,255,0.4)", fontWeight: "700", letterSpacing: "1px", marginTop: "4px" }}>MINUTES</div>
-          </div>
-          <div style={boxStyle}>
-            <div style={{ fontSize: "36px", fontWeight: "800", color: "#d8ff1a" }}>
-              {mounted ? String(timeLeft.seconds).padStart(2, "0") : "00"}
-            </div>
-            <div style={{ fontSize: "11px", color: "rgba(216, 255, 26, 0.6)", fontWeight: "700", letterSpacing: "1px", marginTop: "4px" }}>SECONDS</div>
-          </div>
-        </div>
+        .hero h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin: 0 0 20px 0;
+        }
 
-        {/* INTERACTIVE BUTTONS */}
-        <div style={{ marginTop: "45px", display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center" }}>
-          {["LIVE SCORE", "NEWS HUB", "TRANSFERS"].map((btn, idx) => (
-            <button
-              key={btn}
-              style={{
-                background: idx === 0 ? "#d8ff1a" : "transparent",
-                color: idx === 0 ? "#000" : "#fff",
-                border: idx === 0 ? "none" : "1px solid rgba(255,255,255,0.15)",
-                padding: "14px 28px",
-                borderRadius: "12px",
-                fontWeight: "700",
-                fontSize: "14px",
-                letterSpacing: "0.5px",
-                cursor: "pointer",
-                transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                if (idx === 0) {
-                  e.currentTarget.style.boxShadow = "0 8px 20px rgba(216, 255, 26, 0.3)";
-                } else {
-                  e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                  e.currentTarget.style.borderColor = "#d8ff1a";
-                }
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-                if (idx !== 0) {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
-                }
-              }}
-            >
-              {btn}
-            </button>
-          ))}
-        </div>
-      </section>
+        .host-countries {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
 
-      {/* ARTICLES SECTION */}
-      <section style={{ maxWidth: "1200px", margin: "40px auto 100px", padding: "0 24px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "32px" }}>
-          <h2 style={{ fontSize: "28px", fontWeight: "800", letterSpacing: "-0.5px", margin: 0 }}>
-            Latest Intelligence
-          </h2>
-          <div style={{ flex: 1, height: "1px", background: "rgba(255,255,255,0.08)" }}></div>
-        </div>
+        .country {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "24px",
-          }}
-        >
-          {articles.map((item) => (
-            <div
-              key={item.title}
-              style={{
-                background: "#11141a",
-                borderRadius: "20px",
-                overflow: "hidden",
-                border: "1px solid rgba(255,255,255,0.04)",
-                transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                cursor: "pointer",
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = "translateY(-6px)";
-                e.currentTarget.style.borderColor = "rgba(216, 255, 26, 0.2)";
-                e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.3)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.04)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              <div style={{ width: "100%", height: "200px", overflow: "hidden", position: "relative" }}>
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
+        .flag-img {
+            width: 30px;
+            height: auto;
+            border-radius: 3px;
+        }
 
-              <div style={{ padding: "24px" }}>
-                <h3 style={{ fontSize: "19px", fontWeight: "700", margin: "0 0 10px 0", lineHeight: "1.4" }}>
-                  {item.title}
-                </h3>
+        .countdown {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 50px;
+        }
 
-                <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", margin: "0 0 20px 0", lineHeight: "1.6" }}>
-                  In-depth tactical analysis, expert breaking updates, and statistical scouting reports.
-                </p>
+        .countdown-label {
+            color: var(--highlight-color);
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
 
-                <button
-                  style={{
-                    background: "rgba(255,255,255,0.05)",
-                    color: "#fff",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    padding: "10px 18px",
-                    borderRadius: "10px",
-                    fontWeight: "600",
-                    fontSize: "13px",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    width: "100%",
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.background = "#d8ff1a";
-                    e.currentTarget.style.color = "#000";
-                    e.currentTarget.style.border = "1px solid #d8ff1a";
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.05)";
-                    e.currentTarget.style.color = "#fff";
-                    e.currentTarget.style.border = "1px solid rgba(255,255,255,0.1)";
-                  }}
-                >
-                  Read Analysis
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+        .countdown-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          textAlign: "center",
-          padding: "40px 20px",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-          color: "rgba(255,255,255,0.3)",
-          fontSize: "13px",
-          letterSpacing: "0.5px",
-        }}
-      >
-        © 2026 FOOT TAKTIC — Engineered for Football Enthusiasts.
-      </footer>
+        .countdown-box {
+            background-color: rgba(0,0,0,0.7);
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 15px 25px;
+            min-width: 100px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .countdown-time {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .countdown-tag {
+            color: var(--sub-text-color);
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .quick-btn {
+            background-color: rgba(191, 255, 0, 0.2);
+            color: var(--highlight-color);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-btn-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 40px;
+        }
+
+        .section-header {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Latest Analysis */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .analysis-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .analysis-thumb {
+            width: 100%;
+            height: 180px;
+            background-color: var(--accent-color);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .analysis-card-content {
+            padding: 20px;
+        }
+
+        .analysis-card-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .analysis-card-content p {
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Featured Post */
+        .featured-post-container {
+            margin-bottom: 40px;
+        }
+
+        .featured-post-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured-post-thumb {
+            width: 100%;
+            height: 350px;
+            background-color: var(--accent-color);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .featured-post-content {
+            padding: 20px;
+        }
+
+        .featured-post-content h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.6rem;
+        }
+
+        .featured-post-content p {
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        /* Latest News */
+        .news-section {
+            grid-column: 4 / 5;
+        }
+
+        .news-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .news-item-thumb {
+            width: 70px;
+            height: 70px;
+            background-color: var(--accent-color);
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-item-details {
+            flex: 1;
+        }
+
+        .news-item-title {
+            font-size: 0.95rem;
+            margin: 0 0 5px 0;
+        }
+
+        .news-item-time {
+            color: var(--sub-text-color);
+            font-size: 0.8rem;
+        }
+
+        /* Latest Articles */
+        .articles-section {
+            grid-column: 1 / 4;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .article-card {
+            background-color: var(--card-bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--accent-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-thumb {
+            width: 100%;
+            height: 180px;
+            background-color: var(--accent-color);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-content h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+
+        .article-content p {
+            color: var(--sub-text-color);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Placeholders & Icons (using Font Awesome) */
+        .placeholder-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            fill: currentColor;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="top-bar">
+        OFFICIAL SITE
     </div>
-  );
-}
+
+    <nav class="nav-bar">
+        <div class="logo">
+            FOOT <span>|</span> TAKTIC
+        </div>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">MATCHES</a></li>
+                <li><a href="#">TRANSFERS</a></li>
+                <li><a href="#">ANALYSIS</a></li>
+                <li><a href="#">VIDEOS</a></li>
+            </ul>
+        </div>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-user-circle"></i>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>WORLD CUP 2026</h1>
+        <div class="host-countries">
+            <div class="country">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/320px-Flag_of_the_United_States.svg.png" alt="USA Flag" class="flag-img">
+                USA
+            </div>
+            <div class="country">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/320px-Flag_of_Canada_%28Pantone%29.svg.png" alt="Canada Flag" class="flag-img">
+                CANADA
+            </div>
+            <div class="country">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/320px-Flag_of_Mexico.svg.png" alt="Mexico Flag" class="flag-img">
+                MEXICO
+            </div>
+        </div>
+        <div class="countdown">
+            <div class="countdown-label">COUNTDOWN TO KICK-OFF</div>
+            <div class="countdown-boxes">
+                <div class="countdown-box">
+                    <div class="countdown-time">18</div>
+                    <div class="countdown-tag">DAYS</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-time">23</div>
+                    <div class="countdown-tag">HOURS</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-time">06</div>
+                    <div class="countdown-tag">MINUTES</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-time">42</div>
+                    <div class="countdown-tag">SECONDS</div>
+                </div>
+            </div>
+        </div>
+        <div class="quick-actions">
+            <button class="quick-btn">
+                <i class="fas fa-signal quick-btn-icon"></i>
+                LIVE
+            </button>
+            <button class="quick-btn">
+                <i class="fas fa-newspaper quick-btn-icon"></i>
+                NEWS
+            </button>
+            <button class="quick-btn">
+                <i class="fas fa-exchange-alt quick-btn-icon"></i>
+                TRANSFERS
+            </button>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="latest-analysis">
+            <div class="section-header">
+                // LATEST ANALYSIS
+            </div>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <div class="analysis-thumb" style="background-image: url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="analysis-card-content">
+                        <h3>Real Madrid's New System Explained</h3>
+                        <p>2 HOURS AGO</p>
+                    </div>
+                </div>
+                <div class="analysis-card">
+                    <div class="analysis-thumb" style="background-image: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="analysis-card-content">
+                        <h3>Manchester City Tactical Breakdown</h3>
+                        <p>4 HOURS AGO</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-post-container">
+            <div class="section-header">
+                // FEATURED POST
+            </div>
+            <div class="featured-post-card">
+                <div class="featured-post-thumb" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');"></div>
+                <div class="featured-post-content">
+                    <h2>Everything You Need to Know About World Cup 2026</h2>
+                    <p>1 DAY AGO</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-grid">
+            <section class="articles-section">
+                <div class="section-header">
+                    // LATEST ARTICLES
+                </div>
+                <div class="articles-grid">
+                    <div class="article-card">
+                        <div class="article-thumb" style="background-image: url('https://images.unsplash.com/photo-1551958219-acbc608c6d3c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="article-content">
+                            <h3>Player Spotlight: Jude Bellingham</h3>
+                            <p>3 HOURS AGO</p>
+                        </div>
+                    </div>
+                    <div class="article-card">
+                        <div class="article-thumb" style="background-image: url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                        <div class="article-content">
+                            <h3>Transfer Talk: Where will Mbappé go?</h3>
+                            <p>5 HOURS AGO</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="news-section">
+                <div class="section-header">
+                    // LATEST NEWS
+                </div>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <div class="news-item-thumb" style="background-image: url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80');"></div>
+                        <div class="news-item-details">
+                            <h4 class="news-item-title">Mbappé Future Decision Coming Soon</h4>
+                            <p class="news-item-time">1 HOUR AGO</p>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div class="news-item-thumb" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/150px-FC_Barcelona_%28crest%29.svg.png'); background-color: white; border-radius: 5px;"></div>
+                        <div class="news-item-details">
+                            <h4 class="news-item-title">Barcelona Eye Young Midfield Star</h4>
+                            <p class="news-item-time">2 HOURS AGO</p>
+                        </div>
+                    </li>
+                    <li class="news-item">
+                        <div class="news-item-thumb" style="background-image: url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80');"></div>
+                        <div class="news-item-details">
+                            <h4 class="news-item-title">Champions League Round of 16 Draw</h4>
+                            <p class="news-item-time">3 HOURS AGO</p>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </main>
+
+</body>
+</html>
