@@ -1,129 +1,207 @@
+"use client";
+
 export default function Home() {
-  return (
-    <main className="bg-black text-white min-h-screen">
+return (
+<div
+style={{
+background: "#07090d",
+color: "#fff",
+minHeight: "100vh",
+fontFamily: "Arial, sans-serif",
+}}
+>
+<div
+style={{
+background: "#d8ff1a",
+color: "#000",
+textAlign: "center",
+padding: "8px",
+fontWeight: "bold",
+letterSpacing: "3px",
+}}
+>
+OFFICIAL SITE
+</div>
 
-      {/* NAVBAR */}
-      <header className="w-full border-t-4 border-lime-400 bg-black px-8 py-5 flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-wide">
-          FOOT<span className="text-lime-400">TAKTIC</span>
-        </h1>
+  <nav
+    style={{
+      padding: "20px",
+      textAlign: "center",
+      fontSize: "34px",
+      fontWeight: "900",
+      borderBottom: "1px solid #1d1f24",
+    }}
+  >
+    FOOT<span style={{ color: "#d8ff1a" }}>|</span>TAKTIC
+  </nav>
 
-        <nav className="hidden md:flex gap-8 text-sm font-semibold">
-          <a href="#">NEWS</a>
-          <a href="#">MATCHES</a>
-          <a href="#">TRANSFERS</a>
-          <a href="#">ANALYSIS</a>
-          <a href="#">VIDEOS</a>
-        </nav>
-      </header>
+  <section
+    style={{
+      textAlign: "center",
+      padding: "80px 20px",
+      background:
+        "linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)), url('https://images.unsplash.com/photo-1547347298-4074fc3086f0?q=80&w=1600&auto=format&fit=crop')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <h1
+      style={{
+        fontSize: "72px",
+        margin: 0,
+        fontWeight: "900",
+      }}
+    >
+      WORLD CUP 2026
+    </h1>
 
-      {/* HERO */}
-      <section
-        className="relative h-[85vh] bg-cover bg-center flex items-center justify-center text-center"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1577223625816-7546f13df25d?q=80&w=1600&auto=format&fit=crop')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black/60"></div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "40px",
+        flexWrap: "wrap",
+        marginTop: "25px",
+        fontSize: "28px",
+        fontWeight: "bold",
+      }}
+    >
+      <span>🇺🇸 USA</span>
+      <span>🇨🇦 CANADA</span>
+      <span>🇲🇽 MEXICO</span>
+    </div>
 
-        <div className="relative z-10 px-6">
-          <h2 className="text-6xl md:text-8xl font-extrabold tracking-wider mb-8">
-            WORLD CUP 2026
-          </h2>
+    <h2
+      style={{
+        color: "#d8ff1a",
+        marginTop: "30px",
+        letterSpacing: "3px",
+      }}
+    >
+      COUNTDOWN TO KICK-OFF
+    </h2>
 
-          <div className="flex justify-center gap-8 text-2xl mb-8">
-            <span>🇺🇸 USA</span>
-            <span>🇨🇦 CANADA</span>
-            <span>🇲🇽 MEXICO</span>
-          </div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        gap: "20px",
+        flexWrap: "wrap",
+        marginTop: "25px",
+      }}
+    >
+      {["18 DAYS", "23 HOURS", "06 MIN", "42 SEC"].map((item) => (
+        <div
+          key={item}
+          style={{
+            background: "rgba(0,0,0,.75)",
+            padding: "20px",
+            borderRadius: "10px",
+            minWidth: "120px",
+            border: "1px solid #2d3139",
+            fontWeight: "bold",
+          }}
+        >
+          {item}
+        </div>
+      ))}
+    </div>
 
-          {/* COUNTDOWN */}
-          <div className="bg-black/70 rounded-2xl px-8 py-6 flex gap-8 justify-center mb-8">
-            <div>
-              <p className="text-5xl font-bold">18</p>
-              <span className="text-lime-400">DAYS</span>
-            </div>
+    <div style={{ marginTop: "30px" }}>
+      {["LIVE", "NEWS", "TRANSFERS"].map((btn) => (
+        <button
+          key={btn}
+          style={{
+            background: "#d8ff1a",
+            color: "#000",
+            border: "none",
+            margin: "5px",
+            padding: "14px 28px",
+            borderRadius: "8px",
+            fontWeight: "bold",
+            cursor: "pointer",
+          }}
+        >
+          {btn}
+        </button>
+      ))}
+    </div>
+  </section>
 
-            <div>
-              <p className="text-5xl font-bold">23</p>
-              <span className="text-lime-400">HOURS</span>
-            </div>
+  <section style={{ maxWidth: "1200px", margin: "50px auto", padding: "20px" }}>
+    <h2 style={{ color: "#d8ff1a" }}>LATEST ARTICLES</h2>
 
-            <div>
-              <p className="text-5xl font-bold">06</p>
-              <span className="text-lime-400">MINUTES</span>
-            </div>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
+        gap: "20px",
+        marginTop: "25px",
+      }}
+    >
+      {[
+        "World Cup 2026 Guide",
+        "USA Team Analysis",
+        "Canada Rising Stars",
+        "Mexico Tactical Review",
+        "Transfer Market Update",
+        "Champions League News",
+      ].map((title) => (
+        <div
+          key={title}
+          style={{
+            background: "#12151b",
+            borderRadius: "12px",
+            overflow: "hidden",
+            border: "1px solid #242932",
+          }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
+            alt={title}
+            style={{
+              width: "100%",
+              height: "180px",
+              objectFit: "cover",
+            }}
+          />
 
-            <div>
-              <p className="text-5xl font-bold">42</p>
-              <span className="text-lime-400">SECONDS</span>
-            </div>
-          </div>
+          <div style={{ padding: "20px" }}>
+            <h3>{title}</h3>
 
-          <div className="flex justify-center gap-4">
-            <button className="bg-lime-400 text-black px-6 py-3 rounded-lg font-bold">
-              LIVE
-            </button>
+            <p style={{ color: "#aaa" }}>
+              Latest football news, transfers and World Cup coverage.
+            </p>
 
-            <button className="bg-lime-400 text-black px-6 py-3 rounded-lg font-bold">
-              NEWS
-            </button>
-
-            <button className="bg-lime-400 text-black px-6 py-3 rounded-lg font-bold">
-              TRANSFERS
+            <button
+              style={{
+                background: "#d8ff1a",
+                color: "#000",
+                border: "none",
+                padding: "10px 18px",
+                borderRadius: "8px",
+                fontWeight: "bold",
+              }}
+            >
+              READ MORE
             </button>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </section>
 
-      {/* ARTICLES */}
-      <section className="px-8 py-16">
-        <h3 className="text-lime-400 text-2xl font-bold mb-8">
-          // Latest Analysis
-        </h3>
+  <footer
+    style={{
+      textAlign: "center",
+      padding: "30px",
+      borderTop: "1px solid #1d1f24",
+      color: "#777",
+    }}
+  >
+    © 2026 FOOT TAKTIC
+  </footer>
+</div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-
-          <div className="bg-zinc-900 rounded-xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?q=80&w=1200&auto=format&fit=crop"
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-5">
-              <h4 className="text-xl font-semibold">
-                Real Madrid’s New System Explained
-              </h4>
-            </div>
-          </div>
-
-          <div className="bg-zinc-900 rounded-xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1543357480-c60d40007a3f?q=80&w=1200&auto=format&fit=crop"
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-5">
-              <h4 className="text-xl font-semibold">
-                Manchester City Tactical Breakdown
-              </h4>
-            </div>
-          </div>
-
-          <div className="bg-zinc-900 rounded-xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1200&auto=format&fit=crop"
-              className="w-full h-56 object-cover"
-            />
-            <div className="p-5">
-              <h4 className="text-xl font-semibold">
-                Everything About World Cup 2026
-              </h4>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-    </main>
-  );
+);
 }
